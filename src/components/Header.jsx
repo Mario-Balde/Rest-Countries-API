@@ -1,5 +1,5 @@
-// Displaying the app title/logo
-// Displaying the theme toggle (later).
+// Displays the app title/logo
+// Displays the theme toggle
 
 import { FiMoon, FiSun } from "react-icons/fi";
 export default function Header({ theme, setTheme }) {
