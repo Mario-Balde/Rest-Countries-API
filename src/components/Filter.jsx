@@ -1,6 +1,6 @@
 // - Rendering region options (dropdown/buttons)
 // - Notifying parent when selection changes
-// - Receives: Current selected value & Change handler
+// - Receives current selected value & Change handler
 // - NOT responsible for: Filtering logic, Country data, Search logic.
 // - Summary: “Filter won't apply the filter — it reports user intent.”
 

@@ -1,6 +1,10 @@
 // - Rendering a text input
 // - Notifying parent when input changes
+<<<<<<< HEAD
 // - Receives: "value" & "onChange" handler.
+=======
+// - Receives "value" & "onChange" handler.
+>>>>>>> 2f63a58ed79b3e3c51e0cf2d07702f65c0504dc0
 
 import { FiSearch } from "react-icons/fi";
 
