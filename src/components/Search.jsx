@@ -1,59 +1,29 @@
-// - Rendering a text input
-// - Notifying parent when input changes
-<<<<<<< HEAD
-// - Receives: "value" & "onChange" handler.
-=======
-// - Receives "value" & "onChange" handler.
->>>>>>> 2f63a58ed79b3e3c51e0cf2d07702f65c0504dc0
+// Country search input with Redux state management
 
 import { FiSearch } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchTerm } from "../redux/searchSlice";
 
-export default function Search({ theme, value, onChange }) {
+export default function Search({ theme }) {
+  const searchTerm = useSelector((state) => state.search.searchTerm);
+  const dispatch = useDispatch();
+
   return (
     <div
       className={`shadow-sm rounded-sm relative w-full 
-        ${
-          theme === "light"
-            ? "bg-white text-gray-900"
-            : "bg-gray-800 text-white"
-        }`}
+        ${theme === "light" ? "bg-white" : "bg-[#2B3945]"}`}
     >
       <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400">
         <FiSearch />
       </div>
 
       <input
-        className="bg-transparent w-full pl-14 py-4 border-none outline-none"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        className={`bg-transparent w-full pl-14 py-4 border-none outline-none
+        ${theme === "light" ? "placeholder:text-gray-400" : "placeholder:text-gray-300"}`}
+        value={searchTerm}
+        onChange={(e) => dispatch(setSearchTerm(e.target.value))}
         placeholder="Search for a country..."
       />
     </div>
   );
 }
-
-// import { FiSearch } from "react-icons/fi";
-
-// export default function Search({ theme, value, onChange }) {
-//   return (
-//     <div
-//       className={`shadow-sm rounded-sm relative w-full
-//         ${
-//           theme === "light"
-//             ? "bg-white text-gray-900"
-//             : "bg-gray-800 text-white"
-//         }`}
-//     >
-//       <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400">
-//         <FiSearch />
-//       </div>
-
-//       <input
-//         className="bg-transparent w-full pl-14 py-4 border-none outline-none"
-//         value={value}
-//         onChange={(e) => onChange(e.target.value)}
-//         placeholder="Search for a country..."
-//       />
-//     </div>
-//   );
-// }
