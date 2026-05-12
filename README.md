@@ -111,3 +111,4 @@ Through this project, I improved my understanding of:
 
 - GitHub - [Mario Balde](https://github.com/Mario-Balde)
 - Frontend Mentor - [@Mario-Balde](https://www.frontendmentor.io/profile/Mario-Balde)
+- Linkedin - [mario-balde](https://www.linkedin.com/in/mario-balde-44b994b5/)
