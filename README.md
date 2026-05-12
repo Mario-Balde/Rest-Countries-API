@@ -8,9 +8,15 @@ Users can search for countries, filter by region, view detailed country informat
 
 ---
 
+## Note
+
+Population and country-related data displayed in this project reflects the data available from the REST Countries API during 2024.
+
+---
+
 ## Live Demo
 
-Live Site: [Coming Soon]
+Live Site: https://rest-countries-api-psi-five.vercel.app
 
 ---
 
@@ -40,13 +46,19 @@ Live Site: [Coming Soon]
 
 ## Screenshots
 
-### Desktop Preview
-
-(Comming soon)
-
 ### Mobile Preview
 
-(Comming soon)
+[Mobile Preview Landing Page](./screenshots/mobile-preview-Landing_Page.png)
+[Mobile Preview Search_Mode](./screenshots/mobile-preview-Search_Mode.png)
+[Mobile Preview Filter_Mode](./screenshots/mobile-preview-Filter_Mode.png)
+[Mobile Preview Dark_Mode](./screenshots/mobile-preview-Dark_Mode.png)
+
+### Desktop Preview
+
+[Desktop Preview Landing Page](./screenshots/desktop-preview-Landing_Page.png)
+[Desktop Preview Search_Mode](./screenshots/desktop-preview-Search_Mode.png)
+[Desktop Preview Filter_Mode](./screenshots/desktop-preview-Filter_Mode.png)
+[Destop Preview Dark_Mode](./screenshots/desktop-preview-Dark_Mode.png)
 
 ---
 
