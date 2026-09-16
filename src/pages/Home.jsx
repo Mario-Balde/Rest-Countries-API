@@ -1,6 +1,6 @@
 // Homepage component responsible for fetching and filtering countries
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import CountryCard from "../components/CountryCard";
@@ -15,16 +15,25 @@ export default function Home({ theme }) {
   const selectedRegion = useSelector((state) => state.region.selectedRegion);
   const searchTerm = useSelector((state) => state.search.searchTerm);
 
-  useEffect(() => {
-    fetch(
-      "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3",
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setCountries(data);
-        setLoading(false);
-      });
-  }, []);
+  fetch(
+    "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3",
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch countries");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      setCountries(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
 
   let filtered = countries;
 

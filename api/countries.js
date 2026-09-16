@@ -10,7 +10,7 @@ export default {
     }
 
     const response = await fetch(
-      "https://api.restcountries.com/countries/v5?limit=3",
+      "https://api.restcountries.com/countries/v5?limit=100",
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -29,8 +29,28 @@ export default {
       });
     }
 
-    const data = await response.json();
+    const result = await response.json();
 
-    return Response.json(data);
+    const countries = result.data.objects.map((country) => ({
+      name: {
+        common: country.names.common,
+      },
+
+      flags: {
+        png: country.flag.url_png,
+        svg: country.flag.url_svg,
+        alt: country.flag.description,
+      },
+
+      population: country.population,
+
+      region: country.region,
+
+      capital: country.capitals?.map((capital) => capital.name) ?? [],
+
+      cca3: country.codes.alpha_3,
+    }));
+
+    return Response.json(countries);
   },
 };
