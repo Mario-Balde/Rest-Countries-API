@@ -70,7 +70,11 @@ export default function Home({ theme }) {
 
       <div className="grid grid-cols-1 gap-12 py-10 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((country) => (
-          <CountryCard theme={theme} key={country.cca3} country={country} />
+          <CountryCard
+            theme={theme}
+            key={country.cca3 || country.name.common}
+            country={country}
+          />
         ))}
       </div>
     </div>

@@ -12,9 +12,7 @@ export default function CountryDetail({ theme }) {
   const [borderCountries, setBorderCountries] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}?fullText=true`,
-    )
+    fetch(`/api/country?name=${encodeURIComponent(name)}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch country");
@@ -22,20 +20,13 @@ export default function CountryDetail({ theme }) {
 
         return res.json();
       })
-      .then((data) => setCountry(data[0]))
+      .then((data) => {
+        setCountry(data.country);
+        setBorderCountries(data.borderCountries);
+      })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, [name]);
-
-  // Fetch border country details using border country codes
-  useEffect(() => {
-    if (!country?.borders) return;
-    fetch(
-      `https://restcountries.com/v3.1/alpha?codes=${country.borders.join(",")}`,
-    )
-      .then((res) => res.json())
-      .then((data) => setBorderCountries(data));
-  }, [country]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong.</p>;
