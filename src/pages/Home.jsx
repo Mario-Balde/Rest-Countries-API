@@ -1,6 +1,7 @@
 // Homepage component responsible for fetching and filtering countries
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { useSelector } from "react-redux";
 
 import CountryCard from "../components/CountryCard";
@@ -13,31 +14,33 @@ export default function Home({ theme }) {
 
   // Get filter and search state from Redux
   const selectedRegion = useSelector((state) => state.region.selectedRegion);
+
   const searchTerm = useSelector((state) => state.search.searchTerm);
 
-  fetch(
-    "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3",
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch countries");
-      }
+  // Fetch countries
+  useEffect(() => {
+    fetch("/api/countries")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch countries");
+        }
 
-      return response.json();
-    })
-    .then((data) => {
-      setCountries(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-
-  let filtered = countries;
+        return response.json();
+      })
+      .then((data) => {
+        setCountries(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   // Apply region filter
+  let filtered = countries;
+
   if (selectedRegion !== "All") {
     filtered = filtered.filter((country) => country.region === selectedRegion);
   }
@@ -48,8 +51,6 @@ export default function Home({ theme }) {
       country.name.common.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }
-
-  const displayCountries = filtered;
 
   if (loading) {
     return <p>Loading...</p>;
@@ -68,7 +69,7 @@ export default function Home({ theme }) {
       </div>
 
       <div className="grid grid-cols-1 gap-12 py-10 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {displayCountries.map((country) => (
+        {filtered.map((country) => (
           <CountryCard theme={theme} key={country.cca3} country={country} />
         ))}
       </div>

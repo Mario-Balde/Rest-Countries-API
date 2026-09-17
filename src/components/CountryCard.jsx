@@ -7,27 +7,38 @@ export default function CountryCard({ theme, country }) {
     <Link to={`/country/${country.name.common}`}>
       <div
         className={`rounded-sm overflow-hidden shadow-md
-      ${
-        theme === "light" ? "bg-white text-gray-900" : "bg-[#2B3945] text-white"
-      }`}
+        ${
+          theme === "light"
+            ? "bg-white text-gray-900"
+            : "bg-[#2B3945] text-white"
+        }`}
       >
-        <img
-          className="w-full h-40 object-cover"
-          src={country.flags.png}
-          alt={`Flag of ${country.name.common}`}
-        />
+        {country.flags?.png ? (
+          <img
+            className="w-full h-40 object-cover"
+            src={country.flags.png}
+            alt={`Flag of ${country.name.common}`}
+          />
+        ) : (
+          <div className="w-full h-40 flex items-center justify-center bg-gray-200">
+            <span className="text-gray-500">Flag unavailable</span>
+          </div>
+        )}
 
         <div className="px-6 pt-5 pb-12 space-y-4">
           <h2 className="text-2xl font-bold">{country.name.common}</h2>
+
           <div className="space-y-1">
             <p>
               <span className="font-semibold">Population: </span>
               {country.population.toLocaleString()}
             </p>
+
             <p>
               <span className="font-semibold">Region: </span>
               {country.region}
             </p>
+
             <p>
               <span className="font-semibold">Capital: </span>
               {country.capital?.[0]}

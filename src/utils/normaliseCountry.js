@@ -1,32 +1,32 @@
-// export function normaliseCountry(country) {
-//   return {
-//     name: {
-//       common: country.names?.common || "Unknown",
-//       nativeName: country.names?.native || {},
-//     },
+export function normaliseCountry(country) {
+  return {
+    name: {
+      common: country.names?.common || "Unknown",
+      nativeName: country.names?.native || {},
+    },
 
-//     flags: {
-//       png: country.flag?.url_png || "",
-//       svg: country.flag?.url_svg || "",
-//       alt: country.flag?.alt || "",
-//     },
+    flags: {
+      png: country.flag?.url_png || "",
+      svg: country.flag?.url_svg || "",
+      alt: country.flag?.alt || "",
+    },
 
-//     population: country.population || 0,
+    population: country.population || 0,
 
-//     region: country.region || "",
+    region: country.region || "",
 
-//     subregion: country.subregion || "",
+    subregion: country.subregion || "",
 
-//     capital: country.capitals?.map((capital) => capital.name) || [],
+    capital: country.capitals?.map((capital) => capital.name) || [],
 
-//     cca3: country.codes?.alpha_3 || "",
+    cca3: country.codes?.alpha_3 || "",
 
-//     tld: country.tld || [],
+    tld: country.tld || [],
 
-//     currencies: country.currencies || {},
+    currencies: country.currencies || {},
 
-//     languages: country.languages || {},
+    languages: country.languages || {},
 
-//     borders: country.borders || [],
-//   };
-// }
+    borders: country.borders || [],
+  };
+}
