@@ -47,7 +47,8 @@ export default {
     }
 
     const response = await fetch(
-      "https://api.restcountries.com/countries/v5?limit=100&offset=0",
+      // "https://api.restcountries.com/countries/v5?limit=100&offset=0",
+      "https://api.restcountries.com/countries/v5?limit=100&offset=100",
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
