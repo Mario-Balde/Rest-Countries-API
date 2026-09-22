@@ -42,7 +42,9 @@ export default function CountryDetail({ theme }) {
     : "N/A";
 
   const languages = country.languages
-    ? Object.values(country.languages).join(", ")
+    ? Object.values(country.languages)
+        .map((item) => item.name)
+        .join(", ")
     : "N/A";
 
   return (
