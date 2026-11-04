@@ -9,15 +9,15 @@ import Filter from "../components/Filter";
 import Search from "../components/Search";
 
 export default function Home({ theme }) {
-  const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
+  const [error, setError] = useState("");
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // Get filter and search state from Redux
   const selectedRegion = useSelector((state) => state.region.selectedRegion);
 
   const searchTerm = useSelector((state) => state.search.searchTerm);
 
-  // Fetch countries
   useEffect(() => {
     fetch("/api/countries")
       .then((response) => {
@@ -32,9 +32,10 @@ export default function Home({ theme }) {
       })
       .catch((error) => {
         console.error(error);
+        setError("Unable to load countries. Please try again later.");
       })
       .finally(() => {
-        setLoading(false);
+        setHasLoaded(true);
       });
   }, []);
 
@@ -52,10 +53,6 @@ export default function Home({ theme }) {
     );
   }
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className="px-6 mt-10">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-10 md:space-y-0">
@@ -69,13 +66,21 @@ export default function Home({ theme }) {
       </div>
 
       <div className="grid grid-cols-1 gap-12 py-10 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filtered.map((country) => (
-          <CountryCard
-            theme={theme}
-            key={country.cca3 || country.name.common}
-            country={country}
-          />
-        ))}
+        {error ? (
+          <p className="col-span-full text-center">{error}</p>
+        ) : !hasLoaded ? (
+          <p className="col-span-full text-center">Loading countries...</p>
+        ) : filtered.length > 0 ? (
+          filtered.map((country) => (
+            <CountryCard
+              theme={theme}
+              key={country.cca3 || country.name.common}
+              country={country}
+            />
+          ))
+        ) : (
+          <p className="col-span-full text-center">No countries found.</p>
+        )}
       </div>
     </div>
   );

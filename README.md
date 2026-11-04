@@ -10,7 +10,7 @@ Users can search for countries, filter by region, view detailed country informat
 
 ## Note
 
-Population and country-related data displayed in this project reflects the data available from the REST Countries API during 2024.
+Population and country-related data displayed in this project reflects the data available from the REST Countries API during 2025.
 
 ---
 
