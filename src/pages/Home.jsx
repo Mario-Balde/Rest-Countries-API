@@ -11,7 +11,7 @@ import Search from "../components/Search";
 export default function Home({ theme }) {
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState("");
-  const [hasLoaded, setHasLoaded] = useState(false);
+  // const [hasLoaded, setHasLoaded] = useState(false);
 
   // Get filter and search state from Redux
   const selectedRegion = useSelector((state) => state.region.selectedRegion);
@@ -33,10 +33,10 @@ export default function Home({ theme }) {
       .catch((error) => {
         console.error(error);
         setError("Unable to load countries. Please try again later.");
-      })
-      .finally(() => {
-        setHasLoaded(true);
       });
+    // .finally(() => {
+    //   setHasLoaded(true);
+    // });
   }, []);
 
   // Apply region filter
@@ -66,7 +66,7 @@ export default function Home({ theme }) {
       </div>
 
       <div className="grid grid-cols-1 gap-12 py-10 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {error ? (
+        {/* {error ? (
           <p className="col-span-full text-center">{error}</p>
         ) : !hasLoaded ? (
           <p className="col-span-full text-center">Loading countries...</p>
@@ -80,6 +80,18 @@ export default function Home({ theme }) {
           ))
         ) : (
           <p className="col-span-full text-center">No countries found.</p>
+        )} */}
+
+        {error ? (
+          <p className="col-span-full text-center">{error}</p>
+        ) : (
+          filtered.map((country) => (
+            <CountryCard
+              theme={theme}
+              key={country.cca3 || country.name.common}
+              country={country}
+            />
+          ))
         )}
       </div>
     </div>
