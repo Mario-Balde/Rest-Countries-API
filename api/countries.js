@@ -59,7 +59,12 @@ export default {
         cca3: country.codes.alpha_3,
       }));
 
-      return Response.json(countries);
+      return Response.json(countries, {
+        headers: {
+          "Cache-Control":
+            "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      });
     } catch (error) {
       console.error(error);
 
