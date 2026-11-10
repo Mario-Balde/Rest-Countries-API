@@ -1,5 +1,4 @@
-// Reusable card component for displaying country summary information
-
+// Reusable component that displays a country's flag and key information, with a link to its detail page.
 import { Link } from "react-router-dom";
 
 export default function CountryCard({ theme, country }) {

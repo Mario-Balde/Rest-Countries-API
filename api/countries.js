@@ -1,3 +1,7 @@
+/* Vercel API endpoint that fetches all countries from the REST Countries API, handles pagination, 
+transforms the response into the application's data structure, and 
+caches the results. */
+
 export default {
   async fetch() {
     const apiKey = process.env.REST_COUNTRIES_API_KEY;

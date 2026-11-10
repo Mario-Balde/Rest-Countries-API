@@ -1,3 +1,6 @@
+/* ESLint configuration that defines code quality rules, React Hooks checks, browser and 
+Node.js environments, and ignored build files. */
+
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";

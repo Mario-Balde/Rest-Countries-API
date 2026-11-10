@@ -1,4 +1,4 @@
-// Region filter dropdown connected to Redux global state
+// Component that allows users to filter the displayed countries by geographical region.
 
 import { useState } from "react";
 import { useEffect } from "react";

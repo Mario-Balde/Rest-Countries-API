@@ -1,4 +1,4 @@
-// Redux slice responsible for handling country search queries
+// Redux slice that manages the country search query and provides the action to update it.
 
 import { createSlice } from "@reduxjs/toolkit";
 

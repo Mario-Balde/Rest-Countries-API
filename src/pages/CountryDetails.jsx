@@ -1,35 +1,22 @@
+// Displays detailed information about a selected country and provides navigation to its neighbouring countries.
+
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-export default function CountryDetail({ theme }) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
+export default function CountryDetails({ theme, initialCountries = [] }) {
   const { name } = useParams();
-  const [country, setCountry] = useState(null);
 
-  // Store fetched border country data
-  const [borderCountries, setBorderCountries] = useState([]);
+  const country = initialCountries.find(
+    (item) =>
+      item.name.common.toLowerCase() === decodeURIComponent(name).toLowerCase(),
+  );
 
-  useEffect(() => {
-    fetch(`/api/country?name=${encodeURIComponent(name)}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch country");
-        }
+  if (!country) {
+    return <p>Country not found.</p>;
+  }
 
-        return res.json();
-      })
-      .then((data) => {
-        setCountry(data.country);
-        setBorderCountries(data.borderCountries);
-      })
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, [name]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong.</p>;
+  const borderCountries = initialCountries.filter((item) =>
+    country.borders?.includes(item.cca3),
+  );
 
   const nativeName = country.name.nativeName
     ? Object.values(country.name.nativeName)[0].common
@@ -119,7 +106,7 @@ export default function CountryDetail({ theme }) {
               borderCountries.map((border) => (
                 <Link
                   key={border.cca3}
-                  to={`/country/${border.name.common}`}
+                  to={`/country/${encodeURIComponent(border.name.common)}`}
                   className={`px-4 py-1 shadow rounded text-sm
                   ${theme === "light" ? "bg-white" : "bg-gray-800"}`}
                 >

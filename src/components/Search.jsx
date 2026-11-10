@@ -1,4 +1,4 @@
-// Country search input with Redux state management
+// Component that provides a search input for finding countries by name.
 
 import { FiSearch } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";

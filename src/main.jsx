@@ -1,18 +1,22 @@
-// Application entry point with Redux and React Router providers
+// Client entry point that hydrates the pre-rendered HTML and provides Redux and React Router contexts.
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import { hydrateRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-createRoot(document.getElementById("root")).render(
+import store from "./redux/store";
+import App from "./App";
+import "./index.css";
+
+const initialCountries = window.__INITIAL_COUNTRIES__ || [];
+
+hydrateRoot(
+  document.getElementById("root"),
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <App initialCountries={initialCountries} />
       </BrowserRouter>
     </Provider>
   </StrictMode>,

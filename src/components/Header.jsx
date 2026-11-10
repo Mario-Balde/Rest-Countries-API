@@ -1,4 +1,4 @@
-// Application header with theme switching functionality
+// Application header that displays the site title and provides the theme toggle.
 
 import { FiMoon, FiSun } from "react-icons/fi";
 export default function Header({ theme, setTheme }) {

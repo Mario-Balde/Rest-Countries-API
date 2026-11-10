@@ -1,3 +1,5 @@
+/* Global stylesheet that imports Tailwind CSS base styles, component styles, and utility classes. */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

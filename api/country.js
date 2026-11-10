@@ -1,3 +1,6 @@
+/* Vercel API endpoint that retrieves a selected country's details and 
+fetches its neighbouring countries using their alpha-3 codes. */
+
 export default {
   async fetch(request) {
     const apiKey = process.env.REST_COUNTRIES_API_KEY;

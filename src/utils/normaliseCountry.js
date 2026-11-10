@@ -1,3 +1,6 @@
+/* Utility function that transforms REST Countries API responses into a consistent country 
+data structure for the application. */
+
 export function normaliseCountry(country) {
   return {
     name: {

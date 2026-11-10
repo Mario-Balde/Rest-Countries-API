@@ -1,5 +1,5 @@
-// Main application layout with theme persistence and routing
-//Own toggle theme state and locaStorage
+/* Main application component that manages theme preferences, renders the shared header, 
+and defines the application routes. */
 
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -8,10 +8,20 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import CountryDetails from "./pages/CountryDetails";
 
-export default function App() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
-  });
+export default function App({ initialCountries = [] }) {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light" || savedTheme === "dark") {
+      const frameId = window.requestAnimationFrame(() => {
+        setTheme(savedTheme);
+      });
+
+      return () => window.cancelAnimationFrame(frameId);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -28,11 +38,16 @@ export default function App() {
       <Header theme={theme} setTheme={setTheme} />
 
       <Routes>
-        <Route path="/" element={<Home theme={theme} />} />
+        <Route
+          path="/"
+          element={<Home theme={theme} initialCountries={initialCountries} />}
+        />
 
         <Route
           path="/country/:name"
-          element={<CountryDetails theme={theme} />}
+          element={
+            <CountryDetails theme={theme} initialCountries={initialCountries} />
+          }
         />
       </Routes>
     </div>

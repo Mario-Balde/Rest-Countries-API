@@ -1,4 +1,4 @@
-// Redux slice responsible for managing selected region filters
+// Redux slice that manages the selected geographical region filter and provides the action to update it.
 
 import { createSlice } from "@reduxjs/toolkit";
 
