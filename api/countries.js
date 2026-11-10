@@ -47,6 +47,7 @@ export default {
       const countries = allCountries.map((country) => ({
         name: {
           common: country.names.common,
+          nativeName: country.names.native,
         },
         flags: {
           png: country.flag.url_png,
@@ -55,7 +56,12 @@ export default {
         },
         population: country.population,
         region: country.region,
+        subregion: country.subregion,
         capital: country.capitals?.map((capital) => capital.name) ?? [],
+        tld: country.tld ?? [],
+        currencies: country.currencies ?? {},
+        languages: country.languages ?? {},
+        borders: country.borders ?? [],
         cca3: country.codes.alpha_3,
       }));
 
